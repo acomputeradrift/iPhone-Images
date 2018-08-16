@@ -21,6 +21,16 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.urlArray = @[@"http://imgur.com/bktnImE.png", @"http://imgur.com/zdwdenZ.png", @"http://imgur.com/CoQ8aNl.png", @"http://imgur.com/2vQtZBb.png", @"http://imgur.com/y9MIaCS.png"];
+    [self openSessionAndGrabPhotos];
+
+
+}
+
+- (IBAction)RandomizeUIButton:(UIButton *)sender {
+    [self openSessionAndGrabPhotos];
+}
+
+- (void) openSessionAndGrabPhotos{
     NSURL *url = [NSURL URLWithString:[self randomizeUrl]];
     //NSURL *url = [NSURL URLWithString:@"http://i.imgur.com/bktnImE.png"]; // 1
     
@@ -45,12 +55,10 @@
         }];
         
     }];
-        
+    
     
     [downloadTask resume]; // 5
-
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,7 +67,7 @@
 
 - (NSString*) randomizeUrl{
     
-    int index = arc4random_uniform(4)-1;
+    int index = arc4random_uniform(5);
     NSString *string = [self.urlArray objectAtIndex:index];
     return string;
 }
